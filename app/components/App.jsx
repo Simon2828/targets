@@ -1,9 +1,14 @@
 import uuid from 'node-uuid';
 import React from 'react';
-import Note from './Note.jsx';
+import {Targets} from './Notes.jsx';
+
+export var App = ({data}) => (
+	<div><Targets data={data} /></div>
+
+	);
 
 
-export default class App extends React.Component {
+/*export default class App extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -35,15 +40,19 @@ export default class App extends React.Component {
     return (
     	<div>
 
-    		<button onClick={this.addNote}>+</button>
-    		<ul>{notes.map(note =>
-    			<li key={note.id}>
-    				<Note task={note.task} />
-    			</li>
-    		)}</ul>
+    		<button className="add-note" onClick={this.addNote}>+</button>
+    		<Notes notes={notes} 
+    			onEdit={this.editNote}
+    			onDelete={this.deleteNote} />
     	</div>	
     	);
 	}
+
+	deleteNote = (id) => {
+		this.setState({
+			notes: this.state.notes.filter(note => note.id !==id)
+		});
+	};
 
 	addNote = () => {
 		this.setState({
@@ -54,7 +63,37 @@ export default class App extends React.Component {
 		});
 
 	};
+
+	editNote = (id, task) => {
+		if(!task.trim()) {
+			return;
+		}
+		const notes = this.state.notes.map(note => {
+			if(note.id === id && task) {
+				note.task = task;
+			}
+			return note;
+		});
+		this.setState({notes});
+	}
 }
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
